@@ -1,0 +1,15 @@
+mutation CreateChat(
+  $userIds: [Int!]!
+  $groupName: String
+  $limit: Int!
+  $cursor: String
+  $groupAvatarUrl: String
+) {
+  createChat(
+    userIds: $userIds
+    groupName: $groupName
+    groupAvatarUrl: $groupAvatarUrl
+  ) {
+    ...ChatFragment
+  }
+}
