@@ -1,4 +1,5 @@
 import { FormEvent, ChangeEvent, useState, Fragment, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useRegisterMutation } from "../generated/graphql";
 import FormContainer from "../components/FormContainer";
@@ -10,6 +11,7 @@ import RerouteSection from "../components/RerouteSection";
 import FormHeader from "../components/FormHeader";
 
 const RegisterForm: React.FC = () => {
+  const navigate = useNavigate();
   const [register, { data, loading, error }] = useRegisterMutation();
   const [errors, setErrors] = useState<null | Record<string, string>>(null);
   const [credentials, setCredentials] = useState({
@@ -59,8 +61,7 @@ const RegisterForm: React.FC = () => {
   useEffect(() => {
     if (data) {
       if (data.register.ok) {
-        //-----------//
-        // push to home
+        navigate("/");
       } else {
         let registerErrors: Record<string, string> = {};
         data.register.errors?.forEach((error) => {
