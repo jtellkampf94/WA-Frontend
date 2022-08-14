@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import WhatsAppLogo from "../assets/images/whats-app-logo.svg";
+import { ReactComponent as WhatsAppLogo } from "../assets/images/whats-app-logo.svg";
 
 const Header = styled.div`
   background-color: ${({ theme }) => theme.globalTheme.darkGreen};

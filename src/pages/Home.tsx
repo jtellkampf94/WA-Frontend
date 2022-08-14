@@ -1,6 +1,5 @@
 import { useState, Fragment, useEffect } from "react";
 import { useApolloClient } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
 
 import {
   useNewMessageSubscription,
@@ -30,7 +29,6 @@ export type ContactType = GetContactsQuery["getContacts"][0];
 
 const Home: React.FC = () => {
   const client = useApolloClient();
-  const navigate = useNavigate();
   const { data, loading, error } = useGetCurrentUserQuery();
   const [chatId, setChatId] = useState<null | number>(null);
   const [selectedContacts, setSelectedContacts] = useState<ContactType[]>([]);
@@ -106,7 +104,7 @@ const Home: React.FC = () => {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/login");
+    window.location.reload();
   };
 
   return (

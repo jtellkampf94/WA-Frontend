@@ -1,6 +1,5 @@
 import { useState, FormEvent, ChangeEvent, Fragment, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
 
 import { useLoginMutation } from "../generated/graphql";
 import Input from "../components/Input";
@@ -12,7 +11,6 @@ import RerouteSection from "../components/RerouteSection";
 import FormHeader from "../components/FormHeader";
 
 const LoginForm: React.FC = () => {
-  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery({ query: "(max-width: 880px)" });
   const [login, { loading, data }] = useLoginMutation();
   const [credentials, setCredentials] = useState({
@@ -37,7 +35,7 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     if (data) {
       if (data.login.ok === true) {
-        navigate("/");
+        window.location.reload();
       } else {
         let loginErrors: Record<string, string> = {};
         data.login.errors?.forEach((error) => {
