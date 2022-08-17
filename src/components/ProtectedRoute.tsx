@@ -16,8 +16,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   loading,
   error,
 }) => {
-  console.log("hoooooooooooooeeeeeeeeeeeee");
-
   if (!user) {
     return <Navigate to="/login" />;
   }

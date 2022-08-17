@@ -12,7 +12,7 @@ import { PaginatedMessages, PaginatedUsers } from "../generated/graphql";
 
 export const createApolloClient = (headers?: Record<string, string>) => {
   const httpLink = new HttpLink({
-    uri: `http://localhost:4000`,
+    uri: `${process.env.REACT_APP_URL}`,
     credentials: "include",
     headers: headers || {},
   });
@@ -20,7 +20,7 @@ export const createApolloClient = (headers?: Record<string, string>) => {
   let splitLink: HttpLink | ApolloLink = httpLink;
 
   const wsLink = new WebSocketLink({
-    uri: `ws://localhost:4000`,
+    uri: `${process.env.REACT_APP_WS}`,
     options: {
       reconnect: true,
     },
