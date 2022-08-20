@@ -89,7 +89,7 @@ const MessageWithImageForm: React.FC<MessageWithImageFormProps> = ({
         await axios.put(presignedUrl, croppedImage, {
           headers: { "Content-Type": croppedImage.type },
         });
-        const imageUrl = `${process.env.NEXT_PUBLIC_AWS_S3_URL}/${key}`;
+        const imageUrl = `${process.env.REACT_APP_AWS_S3_URL}/${key}`;
         await sendMessage({
           variables: { chatId, text: messageText, imageUrl },
           update: async (cache, { data }) => {
