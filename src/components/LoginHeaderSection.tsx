@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as WhatsAppLogo } from "../assets/images/whats-app-logo.svg";
+import ChatBackLogo from "./ChatBackLogo";
 import DownloadOnTheAppStoreLogo from "./DownloadOnTheAppStoreLogo";
 import GooglePlayDownloadLogo from "./GooglePlayDownloadLogo";
 
@@ -45,7 +45,7 @@ const IconsContainer = styled.div`
 const LoginHeaderSection: React.FC = () => {
   return (
     <Container>
-      <WhatsAppLogo />
+      <ChatBackLogo />
       <Heading>
         Simple. Secure. <br /> Reliable Messaging.
       </Heading>
