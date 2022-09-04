@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from "react";
 import { useApolloClient } from "@apollo/client";
+import { useMediaQuery } from "react-responsive";
 
 import {
   useNewMessageSubscription,
@@ -29,6 +30,7 @@ export type ContactType = GetContactsQuery["getContacts"][0];
 
 const Home: React.FC = () => {
   const client = useApolloClient();
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 880px)" });
   const { data, loading, error } = useGetCurrentUserQuery();
   const [chatId, setChatId] = useState<null | number>(null);
   const [selectedContacts, setSelectedContacts] = useState<ContactType[]>([]);
@@ -90,6 +92,12 @@ const Home: React.FC = () => {
     }
   }, [newChatData, client]);
 
+  useEffect(() => {
+    if (!isSmallScreen) {
+      setTab(1);
+    }
+  }, [isSmallScreen]);
+
   const handleClick = (selectedChatId: number) => {
     setChatId(selectedChatId);
   };
@@ -100,6 +108,9 @@ const Home: React.FC = () => {
 
   const handleSetChat = (chat: GetChatsQuery["getChats"][0]) => {
     setSelectedChat(chat);
+    if (isSmallScreen) {
+      setTab(7);
+    }
   };
 
   const handleLogout = async () => {
@@ -163,19 +174,31 @@ const Home: React.FC = () => {
               <TabContainer tabIn={tab === 6}>
                 <SearchUsers backToSidebar={() => handleTabChange(1)} />
               </TabContainer>
+
+              {isSmallScreen && chatId && selectedChat && (
+                <TabContainer tabIn={tab === 7}>
+                  <ChatSection
+                    chatId={chatId}
+                    chat={selectedChat}
+                    userId={Number(data.currentUser.id)}
+                  />
+                </TabContainer>
+              )}
             </HomeSidebarContainer>
 
-            <HomeChatContainer>
-              {chatId && selectedChat ? (
-                <ChatSection
-                  chatId={chatId}
-                  chat={selectedChat}
-                  userId={Number(data.currentUser.id)}
-                />
-              ) : (
-                <ChatPlaceholder />
-              )}
-            </HomeChatContainer>
+            {!isSmallScreen && (
+              <HomeChatContainer>
+                {chatId && selectedChat ? (
+                  <ChatSection
+                    chatId={chatId}
+                    chat={selectedChat}
+                    userId={Number(data.currentUser.id)}
+                  />
+                ) : (
+                  <ChatPlaceholder />
+                )}
+              </HomeChatContainer>
+            )}
           </Fragment>
         )}
       </QueryResult>
