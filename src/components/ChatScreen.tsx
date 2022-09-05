@@ -1,8 +1,10 @@
 import { MutableRefObject } from "react";
 import styled from "styled-components";
-import { Avatar } from "@material-ui/core";
+import { Avatar, IconButton } from "@material-ui/core";
 import GroupIcon from "@material-ui/icons/Group";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
+import { globalTheme } from "../themes/globalTheme";
 import ChatScreenBackground from "../assets/images/chat-section-background.png";
 
 const Container = styled.div`
@@ -65,6 +67,10 @@ const MessagesContainer = styled.div`
   }
 `;
 
+const BackButtonContainer = styled.div`
+  margin-right: 10px;
+`;
+
 interface ChatScreenProps {
   name: string;
   isGroupChat: boolean;
@@ -72,6 +78,8 @@ interface ChatScreenProps {
   groupAvatarUrl?: string;
   profilePictureUrl?: string;
   children: React.ReactNode;
+  isSmallScreen: boolean;
+  onClick: () => void;
 }
 
 const ChatScreen: React.FC<ChatScreenProps> = ({
@@ -80,12 +88,23 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
   endOfMessageRef,
   groupAvatarUrl,
   profilePictureUrl,
+  isSmallScreen,
+  onClick,
   children,
 }) => {
   return (
     <Container>
       <Header>
         <IconsContainer>
+          {isSmallScreen && (
+            <BackButtonContainer>
+              <IconButton onClick={onClick} size="small">
+                <ArrowBackIcon
+                  style={{ fill: globalTheme.greyFontColor, fontSize: "24px" }}
+                />
+              </IconButton>
+            </BackButtonContainer>
+          )}
           {!isGroupChat ? (
             <UserAvatar
               style={{

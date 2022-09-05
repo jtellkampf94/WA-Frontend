@@ -175,12 +175,16 @@ const Home: React.FC = () => {
                 <SearchUsers backToSidebar={() => handleTabChange(1)} />
               </TabContainer>
 
-              {isSmallScreen && chatId && selectedChat && (
+              {isSmallScreen && chatId && selectedChat && tab === 7 && (
                 <TabContainer tabIn={tab === 7}>
                   <ChatSection
                     chatId={chatId}
                     chat={selectedChat}
                     userId={Number(data.currentUser.id)}
+                    backToMessages={() => {
+                      handleTabChange(1);
+                      setChatId(null);
+                    }}
                   />
                 </TabContainer>
               )}
@@ -193,6 +197,7 @@ const Home: React.FC = () => {
                     chatId={chatId}
                     chat={selectedChat}
                     userId={Number(data.currentUser.id)}
+                    backToMessages={() => handleTabChange(1)}
                   />
                 ) : (
                   <ChatPlaceholder />
