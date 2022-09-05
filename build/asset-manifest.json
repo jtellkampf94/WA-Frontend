@@ -1,17 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.106ae6f1.css",
-    "main.js": "/static/js/main.f84ae40f.js",
+    "main.js": "/static/js/main.ea0b90d9.js",
     "static/media/gpi.png": "/static/media/gpi.5976dd80989b6f5f38ac.png",
     "static/media/chat-section-background.png": "/static/media/chat-section-background.39f53e74f66d348d9f7c.png",
-    "static/media/intro-connection-light.jpg": "/static/media/intro-connection-light.6cc48a1ebd61a3b3200f.jpg",
-    "static/media/whats-app-logo.svg": "/static/media/whats-app-logo.85f11eae21bffe7fcdfd1bdfb9d65bfe.svg",
+    "static/media/chatback.png": "/static/media/chatback.e9157a9da92b4e81e2f1.png",
     "index.html": "/index.html",
     "main.106ae6f1.css.map": "/static/css/main.106ae6f1.css.map",
-    "main.f84ae40f.js.map": "/static/js/main.f84ae40f.js.map"
+    "main.ea0b90d9.js.map": "/static/js/main.ea0b90d9.js.map"
   },
   "entrypoints": [
     "static/css/main.106ae6f1.css",
-    "static/js/main.f84ae40f.js"
+    "static/js/main.ea0b90d9.js"
   ]
 }
